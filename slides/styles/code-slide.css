@@ -1,0 +1,154 @@
+/* =========================================================================
+   Direction A — « l'éditeur de code comme slide ».
+   Light mode, tout monospace, une seule couleur d'accent (terracotta).
+   Anti-patterns BANNIS : gradient, glassmorphism, ombre portée, dark mode,
+   néon, emoji décoratif. (Voir styles/README.md.)
+   ========================================================================= */
+
+:root {
+  --bg: #fafaf7; /* blanc cassé, pas blanc pur */
+  --fg: #1a1a1a;
+  --muted: #77756e;
+  --accent: #c44a28; /* terracotta — l'UNIQUE accent */
+  --gutter: #c2bfb5;
+  --rule: #e6e3da;
+  --ok: #3c7a57; /* glyphe ✓ sémantique */
+  --ko: #b23a2e; /* glyphe ✗ sémantique */
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.slidev-layout {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-mono);
+  font-feature-settings: "calt" 1, "liga" 1;
+  padding: 2.2rem 2.8rem;
+}
+
+/* Pas d'ombre portée nulle part (anti-pattern). */
+.slidev-layout,
+.slidev-layout * {
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+.slidev-layout h1 { font-size: 2.1rem; }
+.slidev-layout h2 { font-size: 1.55rem; margin-bottom: 1rem; }
+
+/* Titres = commentaires de code. */
+.slidev-layout h1::before,
+.slidev-layout h2::before {
+  content: "// ";
+  color: var(--accent);
+}
+.slidev-layout .no-comment::before { content: ""; }
+
+.slidev-layout strong { color: var(--accent); font-weight: 700; }
+.slidev-layout a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+.slidev-layout li { margin: 0.32em 0; }
+.slidev-layout ul { list-style: none; padding-left: 0; }
+.slidev-layout ul > li::before {
+  content: "·";
+  color: var(--accent);
+  display: inline-block;
+  width: 1.1em;
+  margin-left: -1.1em;
+}
+
+.muted { color: var(--muted); }
+.small { font-size: 0.8rem; }
+hr, .rule { border: none; border-top: 1px solid var(--rule); margin: 1.2rem 0; }
+
+/* Glyphes sémantiques (autorisés). */
+.ok { color: var(--ok); font-weight: 700; }
+.ko { color: var(--ko); font-weight: 700; }
+
+/* Blocs de code : clairs, sans ombre, filet discret. */
+.slidev-layout pre,
+.slidev-layout .shiki {
+  background: #f3f1ea !important;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.9rem 1rem !important;
+  font-size: 0.92rem;
+}
+.slidev-layout :not(pre) > code {
+  background: #f0eee6;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 0.05em 0.35em;
+  color: var(--fg);
+}
+
+/* ---- Layout "code" (chrome d'éditeur) ---------------------------------- */
+.code-layout { padding: 0; display: flex; flex-direction: column; }
+.editor-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--rule);
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+.editor-tabs .tab.active {
+  color: var(--fg);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.45rem;
+  font-weight: 500;
+}
+.editor-tabs .tab-meta { color: var(--muted); font-size: 0.78rem; }
+.editor-body { display: flex; flex: 1; min-height: 0; }
+.editor-gutter {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  color: var(--gutter);
+  user-select: none;
+  padding: 1.4rem 0.8rem 0 0.4rem;
+  border-right: 1px solid var(--rule);
+  font-size: 0.95rem;
+  line-height: 1.75;
+}
+.editor-content { padding: 1.4rem 2rem; flex: 1; min-width: 0; }
+
+/* ---- Grand chiffre-vedette (BigStat) ----------------------------------- */
+.bigstat {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  font-weight: 700;
+  font-size: 3.4rem;
+  letter-spacing: -0.02em;
+}
+.bigstat .from { color: var(--muted); }
+.bigstat .arrow { color: var(--accent); font-weight: 400; }
+.bigstat .to { color: var(--accent); }
+.bigstat-label { color: var(--muted); font-size: 0.95rem; margin-top: 0.2rem; }
+
+.stat-row { display: flex; gap: 2.5rem; margin: 1.4rem 0; flex-wrap: wrap; }
+
+/* ---- Crédit IA (slide 1) ---------------------------------------------- */
+.ai-credit {
+  color: var(--muted);
+  font-size: 0.8rem;
+  border-left: 2px solid var(--accent);
+  padding-left: 0.7rem;
+  margin-top: 1.6rem;
+}
+
+/* ---- Bandeau de section / divider ------------------------------------- */
+.divider-kicker { color: var(--accent); font-size: 0.95rem; letter-spacing: 0.04em; }
+
+/* Pagination discrète. */
+.slidev-page { color: var(--muted); }
+
+/* Mermaid : neutre, pas de couleurs criardes. */
+.slidev-layout .mermaid { font-family: var(--font-mono) !important; }

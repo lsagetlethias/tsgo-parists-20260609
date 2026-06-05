@@ -1,0 +1,4 @@
+# Slidev tire des paquets publiés très récemment ; on neutralise la policy
+# supply-chain de pnpm 11 ici aussi. Reproductibilité via le lockfile.
+minimumReleaseAge: 0
+confirmModulesPurge: false
