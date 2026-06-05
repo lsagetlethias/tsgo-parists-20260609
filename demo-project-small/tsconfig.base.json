@@ -1,0 +1,29 @@
+{
+  // Base partagée. TS 7.0 met `strict` à true par défaut ; on le garde explicite
+  // pour rester lisible sous tsc 5.x ET tsgo.
+  //
+  // NB tsgo (TS 7) : `baseUrl` a été RETIRÉ et les `paths` non-relatifs sont
+  // refusés. On n'en met donc aucun ici. La résolution cross-package passe par
+  // les symlinks pnpm (node_modules/@demo/*) côté BUILD, et par des `paths`
+  // relatifs côté typecheck (cf. tsconfig.check.json).
+  "compilerOptions": {
+    "strict": true,
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "target": "es2024",
+    "lib": ["es2024"],
+    "types": ["node"],
+
+    // Emit / déclarations (le `composite` est ajouté par chaque package).
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+
+    // Hygiène moderne (ESM strict, type-stripping friendly).
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  }
+}

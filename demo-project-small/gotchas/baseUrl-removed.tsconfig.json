@@ -1,0 +1,19 @@
+{
+  // GOTCHA — `baseUrl` a été RETIRÉ en TS 7 (breaking change très courant).
+  // Énormément de configs réelles utilisent baseUrl + paths pour les alias.
+  //   tsc 6.x -> TS5107 (déprécié)
+  //   tsgo    -> TS5102 "Option 'baseUrl' has been removed."
+  //              + TS5090 si des paths non-relatifs subsistent.
+  // Fix : retirer baseUrl, rendre les `paths` relatifs (commençant par "./").
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": false,
+    "incremental": false,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@app/*": ["src/*"]
+    }
+  },
+  "include": ["esModuleInterop-false.ts"]
+}

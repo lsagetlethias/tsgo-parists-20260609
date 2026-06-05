@@ -1,0 +1,6 @@
+node_modules/
+dist/
+dist-gotchas/
+dist-repro/
+*.tsbuildinfo
+.DS_Store

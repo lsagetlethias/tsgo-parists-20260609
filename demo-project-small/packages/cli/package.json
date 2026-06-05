@@ -1,0 +1,13 @@
+{
+  "name": "@demo/cli",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "demo": "./dist/index.js"
+  },
+  "dependencies": {
+    "@demo/api": "workspace:*",
+    "@demo/core": "workspace:*"
+  }
+}

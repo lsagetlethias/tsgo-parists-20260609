@@ -1,0 +1,22 @@
+{
+  "name": "@demo/small",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.5.2",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.check.json",
+    "typecheck:tsgo": "tsgo -p tsconfig.check.json",
+    "build": "tsc -b",
+    "build:declarations": "tsc -b --emitDeclarationOnly",
+    "clean": "tsc -b --clean"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@typescript/native-preview": "latest",
+    "typescript": "latest"
+  }
+}
