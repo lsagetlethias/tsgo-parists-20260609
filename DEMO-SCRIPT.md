@@ -165,8 +165,9 @@ ls packages/*/dist/*.d.ts
 ### Note scénique
 
 🎬 Pointer les **deux jobs** et le commentaire inline. **« On type-checke avec
-tsgo pour la vitesse, on ÉMET les déclarations avec tsc, parce que l'emit a pu
-diverger. Double-binaire : c'est le prix, et il est raisonnable. »**
+tsgo pour la vitesse, on ÉMET les déclarations avec tsc — l'emit tsgo est encore
+en preview et l'API outils est cassée. Double-binaire : c'est le prix, et il est
+raisonnable. »**
 
 ### Plan B
 

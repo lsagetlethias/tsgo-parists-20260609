@@ -125,8 +125,9 @@ jobs:
 
 <div class="rule"></div>
 
-**Pourquoi deux jobs ?** L'emit de déclarations a pu diverger côté tsgo
-(JSDoc `@template`). On type-checke vite avec tsgo, on **émet** avec tsc.
+**Pourquoi deux jobs ?** L'emit `tsgo` est encore en preview et son API outils
+est cassée (Strada → Corsa). On type-checke vite avec tsgo, on **émet** les
+`.d.ts` avec tsc, la source de vérité.
 
 ---
 layout: code

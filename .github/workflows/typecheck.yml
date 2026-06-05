@@ -3,9 +3,9 @@ name: typecheck
 # Pattern DOUBLE-BINAIRE — le cœur de l'argumentaire "à quel prix ?".
 #
 # tsgo (TS 7) type-checke ~10x plus vite : parfait comme *gate* de PR. MAIS son
-# API (Corsa) ne couvre pas encore tout, et l'emit de déclarations a pu diverger
-# (cf. demo-project-small/gotchas). Donc on NE produit PAS les .d.ts publiés avec
-# tsgo : on garde tsc (Strada) pour ça.
+# API outils (Corsa) ne couvre pas encore tout, et son emit de déclarations est
+# encore en preview. Donc on NE produit PAS les .d.ts publiés avec tsgo : on
+# garde tsc (Strada), source de vérité, pour ça.
 #
 #   - job `typecheck-fast`     : tsgo --noEmit  -> rapide, bloque le PR
 #   - job `emit-declarations`  : tsc --emitDeclarationOnly -> artifact fiable

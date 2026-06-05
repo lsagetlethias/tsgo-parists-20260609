@@ -5,10 +5,13 @@
 // (`identity(value: any)` au lieu de `identity<T>(value: T): T`). tsc, lui,
 // le conservait.
 //
-// ⚠️ VÉRIFIÉ le 2026-06-05 sur @typescript/native-preview 7.0.0-dev.20260605.1 :
-//    le bug est CORRIGÉ. tsc ET tsgo émettent désormais le générique. À
-//    re-vérifier le jour J — c'est un bon exemple de la vitesse à laquelle le
-//    preview bouge.
+// ⚠️ VÉRIFIÉ le 2026-06-05 sur @typescript/native-preview 7.0.0-dev.20260605.1,
+//    sur une MATRICE de 7 cas (simple, multi-params, @template {string} contraint,
+//    [T=number] par défaut, @typedef générique, classe générique, méthode
+//    générique) : le bug est CORRIGÉ partout. tsc ET tsgo conservent le
+//    générique. Seules différences restantes = cosmétiques (tsgo ajoute le
+//    mot-clé `declare`, ordonne les membres autrement). À re-vérifier le jour J —
+//    bon exemple de la vitesse à laquelle le preview bouge.
 //
 // La leçon tient même une fois le bug corrigé : l'**emit de déclarations** est
 // la surface la plus risquée de la migration (parité ~99.99 % sur le type-check,

@@ -82,8 +82,9 @@ Ordre de **sacrifice** (du premier au dernier à couper) :
 
 **Q5. Le type-check donne-t-il exactement les mêmes erreurs ?**
 > À **99.99 %** : 74 diagnostics diffèrent sur ~20 000 cas. L'**emit** de
-> déclarations est la zone la plus sensible (ex. JSDoc `@template`, corrigé
-> récemment) — d'où le double-binaire.
+> déclarations est une surface à part (le bug JSDoc `@template` est **vérifié
+> corrigé**, matrice de 7 cas le 05/06) ; il reste en preview côté tsgo — d'où le
+> double-binaire, pas un bug précis.
 
 **Q6. Et les `const enum` / namespaces ?**
 > Sous le modèle type-stripping (`erasableSyntaxOnly`), `const enum` n'est pas

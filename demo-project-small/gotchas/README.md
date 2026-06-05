@@ -32,9 +32,14 @@ tsgo -p gotchas/tsconfig.json   # TS1294, en ~0s
 
 ## Repro du bug JSDoc `@template` (parity watch)
 
-⚠️ Ce bug est **corrigé** dans le build du 2026-06-05 : `tsc` ET `tsgo` émettent
-maintenant `identity<T>(value: T): T`. La repro ci-dessous sert à (a) le
-re-vérifier le jour J, (b) montrer pourquoi on diffe les `.d.ts` en CI.
+⚠️ **Tranché le 2026-06-05** : ce bug est **corrigé**. Vérifié sur une matrice de
+7 cas (simple, multi-params, `@template {string}` contraint, `[T=number]` par
+défaut, `@typedef` générique, classe générique, méthode générique) — `tsc` ET
+`tsgo` conservent le générique partout. Seuls écarts restants : **cosmétiques**
+(`tsgo` ajoute `declare`, ordonne les membres autrement). Ce n'est donc **plus un
+gotcha live** : démo 2 s'appuie sur `esModuleInterop` / `baseUrl` / `const enum`.
+La repro ci-dessous sert à (a) re-vérifier le jour J, (b) justifier qu'on diffe
+les `.d.ts` en CI (l'emit reste une surface à part).
 
 En `.ts`, `@template` est ignoré (TS utilise le vrai générique). La divergence
 ne se voyait que sur un **`.js` avec `checkJs`** :
