@@ -13,7 +13,10 @@ REPO="${REPO:-https://github.com/microsoft/vscode.git}"
 # Tag stable pinné. Vérifie/ajuste le jour J : https://github.com/microsoft/vscode/tags
 TAG="${TAG:-1.123.0}"
 DEST="${DEST:-vscode}"
-TSGO_VERSION="${TSGO_VERSION:-latest}"
+# Build tsgo PINNÉ sur la version validée (idem lockfile du petit projet), pas
+# `latest` : les builds `dev` quotidiens peuvent régresser un diagnostic ou un
+# code d'erreur sur lequel reposent les démos. Bumper en connaissance de cause.
+TSGO_VERSION="${TSGO_VERSION:-7.0.0-dev.20260605.1}"
 
 here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$here"

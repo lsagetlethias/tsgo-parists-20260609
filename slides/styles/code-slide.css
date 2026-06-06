@@ -1,5 +1,5 @@
 /* =========================================================================
-   Direction A — « l'éditeur de code comme slide ».
+   Direction A · « l'éditeur de code comme slide ».
    Light mode, tout monospace, une seule couleur d'accent (terracotta).
    Anti-patterns BANNIS : gradient, glassmorphism, ombre portée, dark mode,
    néon, emoji décoratif. (Voir styles/README.md.)
@@ -9,7 +9,7 @@
   --bg: #fafaf7; /* blanc cassé, pas blanc pur */
   --fg: #1a1a1a;
   --muted: #77756e;
-  --accent: #c44a28; /* terracotta — l'UNIQUE accent */
+  --accent: #c44a28; /* terracotta · l'UNIQUE accent */
   --gutter: #c2bfb5;
   --rule: #e6e3da;
   --ok: #3c7a57; /* glyphe ✓ sémantique */
@@ -138,7 +138,7 @@ hr, .rule { border: none; border-top: 1px solid var(--rule); margin: 1.2rem 0; }
 /* ---- Crédit IA (slide 1) ---------------------------------------------- */
 .ai-credit {
   color: var(--muted);
-  font-size: 0.8rem;
+  font-size: 0.95rem;
   border-left: 2px solid var(--accent);
   padding-left: 0.7rem;
   margin-top: 1.6rem;
