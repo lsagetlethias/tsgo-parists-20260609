@@ -13,12 +13,11 @@ le gain de vitesse (~10x, mémoire ÷2) **et son coût** (migration, double-bina
 
 ```
 .
-├── slides/                 # deck Slidev (light mode, direction "éditeur de code")
+├── slides/                 # deck Slidev (light mode, "éditeur de code") + notes par slide (presenter mode)
 ├── demo-project-small/     # monorepo pnpm contrôlé (core/api/cli) + gotchas/
 ├── demo-project-big/       # setup.sh : microsoft/vscode pinné (démo vitesse)
 ├── .github/workflows/      # typecheck.yml : pattern double-binaire (tsgo + tsc)
-├── DEMO-SCRIPT.md          # script de démo exécutable, timing cumulé
-└── SPEAKER-NOTES.md        # notes, punchlines, anti-tunnel, Q&A
+└── DEMO-SCRIPT.md          # script de démo exécutable, timing cumulé
 ```
 
 ## Prérequis
@@ -58,8 +57,9 @@ cd demo-project-big
 ## Présenter
 
 1. `cd slides && pnpm dev`, ouvrir `/presenter/` sur l'écran de contrôle.
-2. Suivre **`DEMO-SCRIPT.md`** (commandes exactes, sorties attendues, timing).
-3. Garder **`SPEAKER-NOTES.md`** sous les yeux (punchlines, anti-tunnel, Q&A).
+2. Les **notes par slide** (à dire, timing, à faire, transitions, pièges, anti-tunnel,
+   Q&A) s'affichent directement dans le **mode présentateur**.
+3. Suivre **`DEMO-SCRIPT.md`** pour les commandes exactes, sorties attendues et timing.
 4. Terminal en gros, thème clair (salle lumineuse).
 
 ## Fallback (Plan B)

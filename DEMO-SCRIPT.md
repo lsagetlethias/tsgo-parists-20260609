@@ -79,13 +79,13 @@ real    0m7.6s       # tsgo, ~7.5s -> ~10x  (live)
 déjà mesuré (scrollback/capture) ou lance-le en parlant. Le live à garder, c'est
 **tsgo** : quand il rend en ~7s, **silence 2s**, laisse la salle réagir. La mémoire
 ÷2 se dit à l'oral : **« le 10x, c'est le titre ; la mémoire ÷2, c'est ce qui
-change ta CI et ton laptop. »** (Détail `--extendedDiagnostics` : slide Plan B.)
+change la CI et le laptop. »** (Détail `--extendedDiagnostics` : slide Plan B.)
 
 ### Plan B
 
 🅱 Install/build qui rate → slide **« Plan B · Démo 1 »** (chiffres figés). Idéal :
 avoir une **capture vidéo/asciinema du run réussi** à jouer (c'est le seul moment
-irrejouable en 30s). Annoncer les chiffres comme TES mesures, enchaîner.
+irrejouable en 30s). Annoncer les chiffres comme des mesures maison, enchaîner.
 
 ⏱ **cumul : 5:30**
 
@@ -108,8 +108,8 @@ en Go. Toujours accoler « tsgo » à « Corsa ».
 
 > cwd : `demo-project-small/`
 
-Slide pivot « à quel prix ? » (5s) : **« ça, c'était la vitesse ; maintenant, les
-trois additions. »** Puis slide « Prix n°1 · La migration ».
+Slide pivot « le coût · les prix » (5s) : **« un grand pouvoir implique de grandes
+responsabilités ; l'addition va être salée. »** Puis slide « Prix n°1 · La migration ».
 
 ### Commande
 
@@ -135,7 +135,7 @@ error TS1294: This syntax is not allowed when 'erasableSyntaxOnly' is enabled.
 ### Note scénique
 
 🎬 Montrer d'abord que le projet **passe** sur tsgo (rassurer). Puis les
-gotchas : **« tsgo ne vous sauve pas de votre dette de config, il la révèle,
+gotchas : **« tsgo ne sauve pas de la dette de config, il la révèle,
 juste 10x plus vite. »** Insister : `baseUrl` retiré = **beaucoup** de configs
 réelles cassées, **mais les `paths` relatifs au tsconfig survivent** (chercher-
 remplacer mécanique). Codes : tsc et tsgo pointent le **même problème** avec des
@@ -210,10 +210,10 @@ Usage of lsp:
 
 ### Note scénique
 
-🎬 Slide « Prix n°3 ». Contraste à dire : **« aujourd'hui ton éditeur parle à
+🎬 Slide « Prix n°3 ». Contraste à dire : **« aujourd'hui l'éditeur parle à
 tsserver, un process Node à part ; là le serveur LSP est dans le binaire natif. »**
 Zed/Helix/Effect s'y branchent, **et les outils IA**. Lire le twist à l'écran :
-**« le 10x n'est pas pour toi qui type-checkes une fois ; il est pour l'outil,
+**« le 10x n'est pas pour le dev qui type-checke une fois ; il est pour l'outil,
 agent IA inclus, qui type-checke 40 fois par minute. »** Lire la citation MS.
 Coût : API Strada cassée, remplacement visé 7.x ; 9 outils sur 15 en side-by-side.
 
@@ -227,7 +227,7 @@ Coût : API Strada cassée, remplacement visé 7.x ; 9 outils sur 15 en side-by-
 
 ## Bloc 7 : Wrap (1 min) · *slide*
 
-Slide « Lundi, 3 actions ». Boucler le titre : **« trois prix, tous payables
+Slide « Prochaines étapes ». Boucler le titre : **« trois prix, tous payables
 aujourd'hui en side-by-side. »** Puis : mesurer son chiffre, ajouter la gate CI
 tsgo, auditer sa dette (`baseUrl`, `esModuleInterop: false`, `const enum`,
 `node10`). **Pas** de slide « Merci » ni « Questions ».
@@ -249,4 +249,5 @@ tsgo, auditer sa dette (`baseUrl`, `esModuleInterop: false`, `const enum`,
 | 7 Wrap | 1:00 | 17:30 |
 
 → ~2:30 de coussin sur le slot de 20:00. Stratégie de coupe si retard malgré
-tout : voir `SPEAKER-NOTES.md` § anti-tunnel.
+tout : voir les notes du mode présentateur (slide « Place au live », section
+anti-tunnel).
