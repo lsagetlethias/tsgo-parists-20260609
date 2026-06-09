@@ -1,9 +1,0 @@
-{
-  // Solution-style tsconfig : ne compile rien lui-même, orchestre l'ordre de build.
-  "files": [],
-  "references": [
-    { "path": "packages/core" },
-    { "path": "packages/api" },
-    { "path": "packages/cli" }
-  ]
-}

@@ -10,17 +10,17 @@ vidéoprojecteur en **salle claire**, et techniquement simple en Slidev.
 
 | Rôle | Hex | Usage |
 |---|---|---|
-| Fond | `#FAFAF7` | blanc cassé, **jamais** blanc pur |
+| Fond | `#FAF9F8` | blanc cassé, **jamais** blanc pur |
 | Texte | `#1A1A1A` | encre |
 | Atténué | `#77756E` | légendes, métadonnées |
-| **Accent (unique)** | `#C44A28` | terracotta — titres `//`, chiffres-vedette, `strong` |
+| **Accent (unique)** | `#3178C6` | bleu TypeScript : titres `//`, chiffres-vedette, `strong` |
 | Gouttière | `#C2BFB5` | numéros de ligne |
 | Filet | `#E6E3DA` | séparateurs, bordures de blocs |
 | ✓ sémantique | `#3C7A57` | glyphe succès uniquement |
 | ✗ sémantique | `#B23A2E` | glyphe échec uniquement |
 
-> **Une seule** couleur d'accent (`#C44A28`). Le vert/rouge ne servent QUE pour
-> les glyphes sémantiques ✓ / ✗, jamais en décoration. **Pas** le bleu TypeScript.
+> **Une seule** couleur d'accent (`#3178C6`, le bleu TypeScript officiel). Le vert/rouge
+> ne servent QUE pour les glyphes sémantiques ✓ / ✗, jamais en décoration.
 
 ## Fonts
 

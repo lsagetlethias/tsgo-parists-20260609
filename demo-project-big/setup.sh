@@ -40,21 +40,34 @@ npm ci
 echo "==> Ajout de @typescript/native-preview@$TSGO_VERSION (tsgo)..."
 npm install --no-save "@typescript/native-preview@$TSGO_VERSION"
 
+# --- Vérif hyperfine (outil de mesure de la démo, cf. commandes ci-dessous) --
+# zsh : le mot-clé `time` n'imprime RIEN sur un process node (npx/tsc/tsgo), on
+# mesure donc avec hyperfine.
+if ! command -v hyperfine >/dev/null 2>&1; then
+  echo "⚠️  hyperfine introuvable : 'brew install hyperfine' avant la démo."
+fi
+
 cat <<'EOF'
 
 ==> Setup terminé.
 
 Commandes de démo (depuis demo-project-big/vscode/) :
 
-  # Référence tsc (cold : supprime d'abord le cache incrémental)
-  rm -f src/*.tsbuildinfo
-  time npx tsc  -p src/tsconfig.json --noEmit
+  # /!\ zsh : `time npx ...` n'affiche RIEN (process node). On mesure à l'hyperfine.
+  # /!\ tsc OOM sur vscode au heap Node par défaut (~4.2GB) : il FAUT 8GB, comme
+  #     le gulp de vscode (--max-old-space-size=8192). tsgo (natif) s'en passe.
 
-  # tsgo, même cible
-  time npx tsgo -p src/tsconfig.json --noEmit
+  # Comparo complet tsc vs tsgo, en coulisse (sort le ratio ~7,8x pour la slide)
+  hyperfine -i --warmup 0 --runs 3 \
+    --prepare 'find src -name "*.tsbuildinfo" -delete' \
+    -n tsc  'NODE_OPTIONS=--max-old-space-size=8192 npx tsc -p src/tsconfig.json --noEmit' \
+    -n tsgo 'npx tsgo -p src/tsconfig.json --noEmit'
 
-  # Pour la slide mémoire / diagnostics détaillés
-  npx tsc  -p src/tsconfig.json --noEmit --extendedDiagnostics
-  npx tsgo -p src/tsconfig.json --noEmit --extendedDiagnostics
+  # tsgo seul, en live (le wow)
+  hyperfine --warmup 1 --runs 5 -n tsgo 'npx tsgo -p src/tsconfig.json --noEmit'
+
+  # Mémoire (pic RSS) + diagnostics détaillés
+  NODE_OPTIONS=--max-old-space-size=8192 /usr/bin/time -l npx tsc -p src/tsconfig.json --noEmit
+  /usr/bin/time -l npx tsgo -p src/tsconfig.json --noEmit
 
 EOF

@@ -1,6 +1,6 @@
 # demo-project-big — microsoft/vscode
 
-Le "gros projet" de la **démo 1** (install + comparaison de vitesse).
+Le gros projet qui sert à régénérer le bench de vitesse des slides (install + comparaison `tsc` vs `tsgo` sur vscode).
 
 ## Quel repo, quel commit, pourquoi
 
@@ -22,8 +22,8 @@ Le "gros projet" de la **démo 1** (install + comparaison de vitesse).
   exigé pour que le speedup soit spectaculaire.
 
 > tldraw (issue [#7574](https://github.com/tldraw/tldraw/issues/7574), migration
-> tsgo réelle et ouverte) est gardé comme **mention orale** dans la démo 2
-> (migration), pas comme projet de build.
+> tsgo réelle et ouverte) est une **mention orale** pour la partie migration, pas
+> un projet de build.
 
 ## Temps de setup attendu
 
@@ -39,18 +39,39 @@ Le "gros projet" de la **démo 1** (install + comparaison de vitesse).
 
 ```bash
 ./setup.sh
-# puis, depuis demo-project-big/vscode/ :
-rm -f src/*.tsbuildinfo
-time npx tsc  -p src/tsconfig.json --noEmit     # référence (≥ 30s cold)
-time npx tsgo -p src/tsconfig.json --noEmit     # ~10x plus rapide
+# puis, depuis demo-project-big/vscode/ (hyperfine requis : brew install hyperfine)
+
+# comparo complet tsc vs tsgo, en coulisse (sort le ratio ~7,8x pour la slide)
+# tsc OOM sans heap gonflé : NODE_OPTIONS=8GB, comme le gulp de vscode.
+hyperfine -i --warmup 0 --runs 3 \
+  --prepare 'find src -name "*.tsbuildinfo" -delete' \
+  -n tsc  'NODE_OPTIONS=--max-old-space-size=8192 npx tsc -p src/tsconfig.json --noEmit' \
+  -n tsgo 'npx tsgo -p src/tsconfig.json --noEmit'
+
+# tsgo seul, en live (le wow)
+hyperfine --warmup 1 --runs 5 -n tsgo 'npx tsgo -p src/tsconfig.json --noEmit'
 ```
+
+> ⚠️ Deux pièges zsh/Node sur cette démo :
+> - le mot-clé `time` n'affiche **rien** sur un process node (`npx`/`tsc`/`tsgo`),
+>   d'où **hyperfine** ;
+> - `tsc` **OOM** sur vscode au heap Node par défaut (~4.2GB) : il faut
+>   `NODE_OPTIONS=--max-old-space-size=8192` (8GB, comme le gulp de vscode) pour
+>   qu'il termine. `tsgo` (natif) n'a aucun réglage à faire. C'est un point à
+>   noter dans le talk : le coût mémoire de `tsc` est concret, pas théorique.
 
 ## Chiffres de référence (à citer, source en commentaire)
 
-- vscode : **78s → 7.5s** (~10.5x).
+- Benchmark Microsoft (moyenne, à citer comme tel) : vscode **78s → 7.5s** (~10.5x).
   <!-- source: https://devblogs.microsoft.com/typescript/typescript-native-port/ -->
-- Tes chiffres réels dépendront de ta machine — annonce-les comme **les tiens**,
-  mesurés sur scène, pas comme le benchmark Microsoft.
+- Mesuré maison sur ce M2 : tsc **~38s**, tsgo **~4,8s** (**~7,8x**). Plus rapide en
+  absolu que la box MS, mais comme `tsc` (mono-thread) profite à fond du single-core,
+  le ratio se tasse (~7,8x au lieu de ~10x). Sur une CI plus lente, on retrouve le ~10x.
+- Mémoire (self-report `--extendedDiagnostics`) : tsc **~5,3 Go**, tsgo **~4,2 Go**,
+  soit **~20% de moins** (PAS ÷2 comme l'annonce MS ; le 5,3 Go de tsc est même
+  gonflé par le heap 8 Go). Le vrai argument : tsc **OOM** sous 4,2 Go, tsgo non.
+- Tes chiffres réels dépendront de ta machine — annonce le 38/5,5 comme **les tiens**,
+  le ~10x comme la **moyenne Microsoft**, sans mélanger les deux.
 
 > Note honnêteté : ce `setup.sh` n'est **pas** exécuté en CI (clone + `npm ci`
 > de vscode = trop lourd). Il est conçu pour tourner sur le laptop du speaker.
